@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class User {
     private String userName="";
@@ -37,10 +36,16 @@ public class User {
     public void addAccount(Account newAccount) {
         this.accounts.add(newAccount);
     }
+    public void makeDposit(int accountNumber, double deposit){
+        this.accounts.get(accountNumber).setDeposit(deposit);
+    }
 
     public void printAccounts() {
 
-        System.out.println(this.accounts.get(1).name);
-        System.out.println(this.accounts.get(1).value);
+        System.out.println(this.accounts.get(0).name);
+        System.out.println(this.accounts.get(0).balance);
+        String r=this.accounts.get(0).name;
+        System.out.println("..............................");
+        System.out.println(r);
     }
 }
