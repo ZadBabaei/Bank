@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -7,7 +8,7 @@ public class Main {
 
     }
 
-    static public void main(String args[]){
+    static public void main(String args[]) throws InterruptedException {
         // GET USER COMMANDS
 //        String[] command = new String[6];
 //        command[0] = "2";
@@ -30,24 +31,12 @@ public class Main {
         user1.addAccount(account1);
         user1.addAccount(account2);
         user1.addAccount(account3);
-
-
-        account1.setDeposit(100);
-        account1.setDeposit(700);
-        account1.setDeposit(600);
-        account1.setDeposit(5000);
-        account1.setWithdraw(150);
-//        user1.makeDposit("joint", 100); // TODO: fix this
+        Deposit deposit1=new Deposit(100);
+        account1.setDeposit(deposit1);
         account1.print();
 
 
-
-//        user1.printAccounts()
-//        System.out.println(user1.getUserName());
-//        System.out.println(user1.getUserLastName());
-
-
-        Date today = new Date();
-        System.out.println(today);
+//        Date today = new Date();
+//        System.out.println(today);
     }
 }

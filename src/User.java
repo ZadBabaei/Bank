@@ -4,6 +4,7 @@ public class User {
     private String userName="";
     private String userLastName="";
 
+
     public ArrayList<Account> accounts;
     public int accountCounter = 0;
 
@@ -22,7 +23,9 @@ public class User {
         this.userLastName=LastName;
    }
 
-
+    public String generateUserId() {
+        return this.userName + "_" + this.userLastName + "_" + Math.random()*1000;
+    }
 
     public String getUserName() {
         return userName;
@@ -36,8 +39,19 @@ public class User {
     public void addAccount(Account newAccount) {
         this.accounts.add(newAccount);
     }
-    public void makeDposit(int accountNumber, double deposit){
-        this.accounts.get(accountNumber).setDeposit(deposit);
+
+    public void makeDposit(String accountName, Deposit deposit){
+//        boolean found = false;
+        for (int i=0; i<=accounts.size();i++)
+        {
+            if (accounts.get(i).name.equals(accountName))
+            {
+//                found = true;
+                this.accounts.get(i).setDeposit(deposit);
+                return;
+            }
+        }
+        System.out.println("account not found");
     }
 
     public void printAccounts() {
