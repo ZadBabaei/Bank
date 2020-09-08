@@ -14,9 +14,9 @@ public class Transaction {
 
     public String getValueForPrinting() {
         if(this.isDeposit) {
-            return "+" + value + "$ type: deposit";
+            return "+" + value + "$ (type: deposit)";
         } else {
-            return "-" + value + "$ type: withdraw";
+            return "-" + value + "$ (type: withdraw)";
         }
     }
 }

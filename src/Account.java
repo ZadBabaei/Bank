@@ -48,7 +48,11 @@ public class Account {
        public void print()
        {
            // TODO: merge the deposits and withdraws lists
-        System.out.println("The opening balance for "+name+" account is : "+openingBalance+"$");
+           System.out.println("");
+           System.out.println("");
+           System.out.println("Account : "+name);
+           System.out.println("");
+        System.out.println("opening balance : "+openingBalance+"$");
            System.out.println("");
 
         for(int i = 0; i < transactions.size(); i++)
@@ -56,7 +60,8 @@ public class Account {
         System.out.println(transactions.get(i).date   +"  ----->   the amount of transaction is "+transactions.get(i).getValueForPrinting());
             System.out.println("");
         }
-        System.out.println("The amount for closing balance is: "+balance+"$");
+
+        System.out.println("Ending balance : "+balance+"$");
            System.out.println("");
     }
 }
