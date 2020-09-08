@@ -40,14 +40,14 @@ public class User {
         this.accounts.add(newAccount);
     }
 
-    public void makeDposit(String accountName, Deposit deposit){
+    public void makeDposit(String accountName, Transaction deposit){
 //        boolean found = false;
         for (int i=0; i<=accounts.size();i++)
         {
             if (accounts.get(i).name.equals(accountName))
             {
 //                found = true;
-                this.accounts.get(i).setDeposit(deposit);
+                this.accounts.get(i).makeTransaction(deposit);
                 return;
             }
         }

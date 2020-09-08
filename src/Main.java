@@ -1,7 +1,3 @@
-import java.util.Date;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-
 public class Main {
 
     public  void printEverything(){
@@ -31,9 +27,14 @@ public class Main {
         user1.addAccount(account1);
         user1.addAccount(account2);
         user1.addAccount(account3);
-        Deposit deposit1=new Deposit(100);
-        account1.setDeposit(deposit1);
+        Transaction deposit1=new Transaction(900,true);
+        account1.makeTransaction(deposit1);
+        Transaction withdraw1=new Transaction(300,false);
+        account1.makeTransaction(withdraw1);
+        Transfer transfer1=new Transfer(200,account1,account3);
+
         account1.print();
+        account3.print();
 
 
 //        Date today = new Date();

@@ -1,79 +1,63 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Account {
+
     String name;
     double openingBalance;
     double balance;
-    double deposit;
-    double withdraw;
-
-    public ArrayList<Date> withdrawDate;
-    public ArrayList<Deposit> deposits;
-    public ArrayList<Double> withdrawValue;
-    public ArrayList<Double> transferredFromThisAccountValues;
-    public ArrayList<Double> transferredToThisAccountValues;
-    public ArrayList<String> senders;
-    public ArrayList<String> receivers;
+    public ArrayList<Transaction> transactions;
+    public ArrayList<Transfer> transfers;
 
 
-    public Account(String name, double openingBalance) {
+    public Account(java.lang.String name, double openingBalance) {
         this.name = name;
         this.openingBalance = openingBalance;
         this.balance=openingBalance;
-        deposits=new ArrayList<Deposit>();
-
-        withdrawValue=new ArrayList<Double>();
-        withdrawDate=new ArrayList<Date>();
-        transferredFromThisAccountValues = new ArrayList<Double>();
-        transferredToThisAccountValues = new ArrayList<Double>();
-        senders=new ArrayList<String>();
-        receivers =new ArrayList<String >();
-
+        transactions=new ArrayList<Transaction>();
+        transfers = new ArrayList<Transfer>();
     }
 
 
+    public void makeTransaction(Transaction transaction) {
 
-    public void setDeposit(Deposit deposit) {
-//        this.depositDates.add(new Date());
-        deposits.add(deposit); // store in list
+        // line 1: add transaction to transactions list
+        // line 2: adjust balance using a function in transaction. Rules: transaction should not adjust the balance
+        // this.balance = transaction.calculateNewBalance(this.balance)
+        // this.balance = this.balance + transaction.getDifference()
 
+        if(transaction.isDeposit)
+        {
+            transactions.add(transaction); // store in list
+            this.balance=balance+transaction.value;
 
-        this.balance=balance+deposit.depositValue;
-
-    }
-
-    public void transferTo(double value,Account destination){
-        this.balance=balance-value;
-        destination.balance=destination.balance+value;
-        destination.transferredToThisAccountValues.add(value);
-        transferredFromThisAccountValues.add(value);
-        destination.senders.add(name);
-        receivers.add(destination.name);
-
-    }
-
-    public void setWithdraw(double withdraw) {
-        this.withdrawValue.add(withdraw); // store in list
-        this.balance=balance-withdraw;
-        this.withdrawDate.add(new Date());
-
-
-    }
-
-       public void print() {
-        System.out.println("the amount for opening balance is : "+openingBalance+"$");
-
-
-
-        for(int i = 0; i < deposits.size(); i++) {
-        System.out.println(deposits.get(i).depositDate   +"   the amount of deposit is +"+deposits.get(i).depositValue+"$");
+        }else
+            {
+                transactions.add(transaction); // store in list
+                this.balance=balance-transaction.value;
         }
-        System.out.println("");
-        for(int i = 0; i < withdrawValue.size(); i++) {
-            System.out.println(withdrawDate.get(i)   +"   the amount of withdraw is -"+withdrawValue.get(i)+"$");
+    }
+
+    public void transferTo(Transfer newTransfer,Account destination){
+
+        this.balance=balance-newTransfer.transferValue;
+        destination.balance=destination.balance+newTransfer.transferValue;
+        transfers.add(newTransfer);
+
+    }
+
+       public void print()
+       {
+           // TODO: merge the deposits and withdraws lists
+        System.out.println("The opening balance for "+name+" account is : "+openingBalance+"$");
+           System.out.println("");
+
+        for(int i = 0; i < transactions.size(); i++)
+        {
+        System.out.println(transactions.get(i).date   +"  ----->   the amount of transaction is "+transactions.get(i).getValueForPrinting());
+            System.out.println("");
         }
-        System.out.println("closing balance"+balance);
+        System.out.println("The amount for closing balance is: "+balance+"$");
+           System.out.println("");
     }
 }
 
