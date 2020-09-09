@@ -15,7 +15,10 @@ public class Transfer {
         sender=originAccount;
         originAccount.transferTo(this,destinationAccount);
 
-
-
     }
+    public void printSenderReceiver(){
+        System.out.println("sender is "+this.sender+" receiver is "+this.receiver);
+    }
+
+
 }

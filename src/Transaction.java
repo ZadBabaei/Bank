@@ -4,6 +4,7 @@ public class Transaction {
     public boolean isDeposit= true;
     public double value;
     public Date  date;
+    public double newBalance;
 
     public Transaction(double value,boolean isDeposit)
     {
@@ -18,5 +19,19 @@ public class Transaction {
         } else {
             return "-" + value + "$ (type: withdraw)";
         }
+    }
+    public double calculateNewBalance(double balance){
+        if(isDeposit)
+        {
+            newBalance=balance+value;
+        }else
+        {
+            newBalance=balance-value;
+        }
+        return newBalance;
+
+
+
+
     }
 }

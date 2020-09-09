@@ -24,17 +24,8 @@ public class Account {
         // line 2: adjust balance using a function in transaction. Rules: transaction should not adjust the balance
         // this.balance = transaction.calculateNewBalance(this.balance)
         // this.balance = this.balance + transaction.getDifference()
-
-        if(transaction.isDeposit)
-        {
-            transactions.add(transaction); // store in list
-            this.balance=balance+transaction.value;
-
-        }else
-            {
-                transactions.add(transaction); // store in list
-                this.balance=balance-transaction.value;
-        }
+        transactions.add(transaction); // store in list
+        this.balance=transaction.calculateNewBalance(balance);
     }
 
     public void transferTo(Transfer newTransfer,Account destination){
@@ -60,12 +51,19 @@ public class Account {
         System.out.println(transactions.get(i).date   +"  ----->   the amount of transaction is "+transactions.get(i).getValueForPrinting());
             System.out.println("");
         }
+           for(int i = 0; i < transfers.size(); i++) {
+               System.out.println(transfers.get(i).transferDate + "  ----->   the amount of transfer is " + transfers.get(i).transferValue);
+               System.out.println("");
+           }
 
         System.out.println("Ending balance : "+balance+"$");
            System.out.println("");
+           for(int i = 0; i < transfers.size(); i++) {
+               transfers.get(i).printSenderReceiver();
+           }
+
     }
 }
-
 /*
     Print:
 
