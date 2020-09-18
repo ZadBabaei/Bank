@@ -27,10 +27,8 @@ public class Main {
         user1.addAccount(account1);
         user1.addAccount(account2);
         user1.addAccount(account3);
-        Transaction deposit1=new Transaction(900,true);
-        account1.makeTransaction(deposit1);
-        Transaction withdraw1=new Transaction(300,false);
-        account1.makeTransaction(withdraw1);
+        Transaction deposit1=new Transaction(900,true,account1); // TODO: merge in 1 line
+        Transaction withdraw1=new Transaction(300,false,account1);
         Transfer transfer1=new Transfer(200,account1,account3);
 
         account1.print();

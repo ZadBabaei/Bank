@@ -33,7 +33,7 @@ public class Account {
         this.balance=balance-newTransfer.transferValue;
         destination.balance=destination.balance+newTransfer.transferValue;
         transfers.add(newTransfer);
-
+        destination.transfers.add(newTransfer); // TODO: origin account should not modify destination account
     }
 
        public void print()
@@ -61,6 +61,10 @@ public class Account {
            for(int i = 0; i < transfers.size(); i++) {
                transfers.get(i).printSenderReceiver();
            }
+
+//           for(int i = 0; i < x.size(); i++) {
+//               x.get(i).print();
+//           }
 
     }
 }

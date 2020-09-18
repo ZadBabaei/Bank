@@ -1,16 +1,15 @@
 import java.util.Date;
 
-public class Transaction {
+public class Transaction extends GenericTransaction {
     public boolean isDeposit= true;
-    public double value;
-    public Date  date;
-    public double newBalance;
 
-    public Transaction(double value,boolean isDeposit)
+
+
+    public Transaction(double value,boolean isDeposit,Account account)
     {
+        super(value);
+        account.makeTransaction(this);
         this.isDeposit=isDeposit;
-        this.value = value;
-         date=new Date();
     }
 
     public String getValueForPrinting() {
@@ -23,15 +22,11 @@ public class Transaction {
     public double calculateNewBalance(double balance){
         if(isDeposit)
         {
-            newBalance=balance+value;
+            return balance+value;
         }else
         {
-            newBalance=balance-value;
+            return balance-value;
         }
-        return newBalance;
-
-
-
 
     }
 }
