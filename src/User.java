@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class User {
     private String userName="";
     private String userLastName="";
+    private String userId;
 
 
     public ArrayList<Account> accounts;
@@ -24,7 +25,7 @@ public class User {
    }
 
     public String generateUserId() {
-        return this.userName + "_" + this.userLastName + "_" + Math.random()*1000;
+        return this.userName + "_" + this.userLastName + "_" + Math.round(Math.random()*1000);
     }
 
     public String getUserName() {
@@ -33,6 +34,10 @@ public class User {
 
     public String getUserLastName() {
         return userLastName;
+    }
+    public String getUserId(){
+        userId=generateUserId();
+        return userId;
     }
 
 
@@ -54,12 +59,13 @@ public class User {
         System.out.println("account not found");
     }
 
-    public void printAccounts() {
-
-        System.out.println(this.accounts.get(0).name);
-        System.out.println(this.accounts.get(0).balance);
-        String r=this.accounts.get(0).name;
-        System.out.println("..............................");
-        System.out.println(r);
-    }
+//    public void printAccounts() {
+//
+//        System.out.println(this.accounts.get(0).name);
+//        System.out.println(this.accounts.get(0).balance);
+//        String r=this.accounts.get(0).name;
+//        System.out.println("..............................");
+//        System.out.println(r);
+//    }
+    //lkaslf;halsfuhalfh;
 }

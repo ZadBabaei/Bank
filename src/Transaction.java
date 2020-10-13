@@ -1,15 +1,17 @@
 import java.util.Date;
 
 public class Transaction extends GenericTransaction {
-    public boolean isDeposit= true;
+    public boolean isDeposit;
 
 
 
     public Transaction(double value,boolean isDeposit,Account account)
     {
+
         super(value);
-        account.makeTransaction(this);
         this.isDeposit=isDeposit;
+        account.makeTransaction(this);
+
     }
 
     public String getValueForPrinting() {
@@ -20,13 +22,17 @@ public class Transaction extends GenericTransaction {
         }
     }
     public double calculateNewBalance(double balance){
-        if(isDeposit)
+        if(this.isDeposit)
         {
-            return balance+value;
+            balance=balance+value;
         }else
-        {
-            return balance-value;
+        {balance=balance-value;
         }
+        return balance;
 
+    }
+
+    public void print() {
+        System.out.println(this.date + " - the amount of transaction is "+ this.getValueForPrinting());
     }
 }

@@ -21,21 +21,42 @@ public class Main {
         //printEverything();
 //        UUID uuid = UUID.randomUUID();
         User user1=new User("zad","babaei");
-        Account account1 = new Account("Checking", 100);
+        Account account1 =new Account("checking", 100);
         Account account2 = new Account("Saving", 200);
         Account account3 = new Account("joint", 300);
+//        AccountInterface acc4 = accountFactory("test", 123);
+
         user1.addAccount(account1);
-        user1.addAccount(account2);
-        user1.addAccount(account3);
-        Transaction deposit1=new Transaction(900,true,account1); // TODO: merge in 1 line
+//        user1.addAccount(account2);
+//        user1.addAccount(account3);
+
+
+        Transaction deposit1=new Transaction(900,true,account1);
         Transaction withdraw1=new Transaction(300,false,account1);
         Transfer transfer1=new Transfer(200,account1,account3);
+//
+//        Printer printer = new Printer();
 
-        account1.print();
-        account3.print();
+
+        Printer p1 = new Printer();
+        p1.printAllAccountInformation(account1, user1);
+
+
+
+
+
 
 
 //        Date today = new Date();
 //        System.out.println(today);
     }
+
+    // factory design pattern:
+//    public static AccountInterface accountFactory(String name, double v) {
+//        return new Account(name, v);
+//    }
 }
+//interface AccountInterface{
+//    void makeTransaction(Transaction transaction);
+
+

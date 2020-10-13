@@ -1,27 +1,27 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 
-public class Transfer  { // TODO: extend generic transaction
-    public Date transferDate;
+public class Transfer extends GenericTransaction  {
     public Account sender;
     public Account receiver;
-    public double transferValue;
 
 
-
-
-    public Transfer(double transferValue, Account originAccount, Account destinationAccount){
-//        super( value, isDeposit);
-        transferDate=new Date();
-        this.transferValue=transferValue;
+    public Transfer(double value,  Account originAccount, Account destinationAccount){
+        super(value);
         this.receiver=destinationAccount;
         sender=originAccount;
-        originAccount.transferTo(this,destinationAccount);
-
+        originAccount.transferTo(this);
+        destinationAccount.transferFrom(this);
 
     }
     public void printSenderReceiver(){
         System.out.println("sender is "+this.sender.name+" receiver is "+this.receiver.name);
     }
 
+    public void print() {
+        super.print();
+        System.out.print(this.date + " - the amount of transfer is "+ this.value + " - sender:" + sender.name + " - receiver: " + receiver.name);
+    }
 
 }

@@ -1,20 +1,18 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Account {
 
     String name;
     double openingBalance;
     double balance;
-    public ArrayList<Transaction> transactions;
-    public ArrayList<Transfer> transfers;
-
+    public ArrayList<GenericTransaction> transactions;
 
     public Account(java.lang.String name, double openingBalance) {
         this.name = name;
         this.openingBalance = openingBalance;
         this.balance=openingBalance;
-        transactions=new ArrayList<Transaction>();
-        transfers = new ArrayList<Transfer>();
+        transactions=new ArrayList<GenericTransaction>();
     }
 
 
@@ -28,17 +26,20 @@ public class Account {
         this.balance=transaction.calculateNewBalance(balance);
     }
 
-    public void transferTo(Transfer newTransfer,Account destination){
+    public void transferTo(Transfer newTransfer){
 
-        this.balance=balance-newTransfer.transferValue;
-        destination.balance=destination.balance+newTransfer.transferValue;
-        transfers.add(newTransfer);
-        destination.transfers.add(newTransfer); // TODO: origin account should not modify destination account
+        this.balance=balance-newTransfer.value;
+        transactions.add(newTransfer);
+
+    }
+    public void transferFrom(Transfer newTransfer){
+        this.balance=this.balance+newTransfer.value;
+        transactions.add(newTransfer);
     }
 
        public void print()
        {
-           // TODO: merge the deposits and withdraws lists
+
            System.out.println("");
            System.out.println("");
            System.out.println("Account : "+name);
@@ -48,23 +49,13 @@ public class Account {
 
         for(int i = 0; i < transactions.size(); i++)
         {
-        System.out.println(transactions.get(i).date   +"  ----->   the amount of transaction is "+transactions.get(i).getValueForPrinting());
+            transactions.get(i).print();
             System.out.println("");
         }
-           for(int i = 0; i < transfers.size(); i++) {
-               System.out.println(transfers.get(i).transferDate + "  ----->   the amount of transfer is " + transfers.get(i).transferValue);
-               System.out.println("");
-           }
+
 
         System.out.println("Ending balance : "+balance+"$");
            System.out.println("");
-           for(int i = 0; i < transfers.size(); i++) {
-               transfers.get(i).printSenderReceiver();
-           }
-
-//           for(int i = 0; i < x.size(); i++) {
-//               x.get(i).print();
-//           }
 
     }
 }

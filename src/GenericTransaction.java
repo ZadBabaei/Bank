@@ -5,10 +5,15 @@ public class GenericTransaction {
     public double value;
     protected String test;
 
+
+
     GenericTransaction(double value){
         date=new Date();
         this.value = value;
+
     }
 
-    // TODO: print()
+    public void print() {
+
+    }
 }
